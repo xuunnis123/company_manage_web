@@ -1,44 +1,44 @@
 import axios from 'axios'
 import {
-    STUDENTS_LIST_REQUEST,
-    STUDENTS_LIST_SUCCESS,
-    STUDENTS_LIST_FAIL,
+    SUPPLIERS_LIST_REQUEST,
+    SUPPLIERS_LIST_SUCCESS,
+    SUPPLIERS_LIST_FAIL,
 
 
-    STUDENT_ADD_REQUEST,
-    STUDENT_ADD_SUCCESS,
-    STUDENT_ADD_FAIL,
+    SUPPLIER_ADD_REQUEST,
+    SUPPLIER_ADD_SUCCESS,
+    SUPPLIER_ADD_FAIL,
 
-    STUDENT_UPDATE_REQUEST,
-    STUDENT_UPDATE_SUCCESS,
-    STUDENT_UPDATE_FAIL,
+    SUPPLIER_UPDATE_REQUEST,
+    SUPPLIER_UPDATE_SUCCESS,
+    SUPPLIER_UPDATE_FAIL,
 
-    STUDENT_DETAIL_REQUEST,
-    STUDENT_DETAIL_SUCCESS,
-    STUDENT_DETAIL_FAIL,
-    STUDENT_UPDATE_RESET,
+    SUPPLIER_DETAIL_REQUEST,
+    SUPPLIER_DETAIL_SUCCESS,
+    SUPPLIER_DETAIL_FAIL,
+    SUPPLIER_UPDATE_RESET,
 
-    STUDENT_DELETE_REQUEST,
-    STUDENT_DELETE_SUCCESS,
-    STUDENT_DELETE_FAIL,
+    SUPPLIER_DELETE_REQUEST,
+    SUPPLIER_DELETE_SUCCESS,
+    SUPPLIER_DELETE_FAIL,
 
-} from '../constants/studentConstants'
-export const listStudent = () => async(dispatch) =>{
+} from '../constants/supplierConstants'
+export const listSupplier = () => async(dispatch) =>{
     try {
         dispatch({
-            type: STUDENTS_LIST_REQUEST
+            type: SUPPLIERS_LIST_REQUEST
         })
 
-        const {data} = await axios.get('/api/student/students/') 
+        const {data} = await axios.get('/api/supplier/suppliers/') 
         
         dispatch({
-            type:STUDENTS_LIST_SUCCESS,
+            type:SUPPLIERS_LIST_SUCCESS,
             payload:data
         })
 
     }catch(error){
         dispatch({ 
-            type: STUDENTS_LIST_FAIL,
+            type: SUPPLIERS_LIST_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,
@@ -47,22 +47,22 @@ export const listStudent = () => async(dispatch) =>{
     }
 }
 
-export const studentDetail = (id) => async(dispatch) =>{
+export const supplierDetail = (id) => async(dispatch) =>{
     try {
         dispatch({
-            type: STUDENT_DETAIL_REQUEST
+            type: SUPPLIER_DETAIL_REQUEST
         })
         console.log(id)
-        const {data} = await axios.get(`/api/student/${id}`) 
+        const {data} = await axios.get(`/api/supplier/${id}`) 
         
         dispatch({
-            type:STUDENT_DETAIL_SUCCESS,
+            type:SUPPLIER_DETAIL_SUCCESS,
             payload:data
         })
 
     }catch(error){
         dispatch({ 
-            type: STUDENT_DETAIL_FAIL,
+            type: SUPPLIER_DETAIL_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,
@@ -72,11 +72,11 @@ export const studentDetail = (id) => async(dispatch) =>{
 }
 
 
-export const addStudent = (school, name, phone, address, tags, is_end, memo, file) => async(dispatch,getState) =>{
+export const addSupplier = (name, person ,unicode,phone, address, memo) => async(dispatch,getState) =>{
     try{
         dispatch({
 
-                type: STUDENT_ADD_REQUEST
+                type: SUPPLIER_ADD_REQUEST
             })
             const {
                 userLogin: { userInfo },
@@ -89,13 +89,13 @@ export const addStudent = (school, name, phone, address, tags, is_end, memo, fil
                 }
             }
         const {data} = await axios.post(
-             '/api/student/create/',
-             {'school': school, 'name': name ,'phone':phone,'address':address,'tags':tags,'is_end':is_end,'memo':memo, 'file': file},
+             '/api/supplier/create/',
+             {'person': person, 'name': name ,'phone':phone,'address':address,'unicode':unicode,'memo':memo},
              config
              ) 
-         localStorage.setItem("student",data.id)
+         localStorage.setItem("supplier",data.id)
          dispatch({
-             type:STUDENT_ADD_SUCCESS,
+             type:SUPPLIER_ADD_SUCCESS,
              payload:data
              
          })
@@ -104,7 +104,7 @@ export const addStudent = (school, name, phone, address, tags, is_end, memo, fil
 
     }catch(error){
         dispatch({ 
-            type: STUDENT_ADD_FAIL,
+            type: SUPPLIER_ADD_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,
@@ -115,11 +115,11 @@ export const addStudent = (school, name, phone, address, tags, is_end, memo, fil
 
 
 
-export const updateStudent = (student) => async(dispatch,getState) =>{
+export const updateSupplier = (supplier) => async(dispatch,getState) =>{
     try{
         dispatch({
 
-                type: STUDENT_UPDATE_REQUEST
+                type: SUPPLIER_UPDATE_REQUEST
             })
             const {
                 userLogin: { userInfo },
@@ -131,26 +131,26 @@ export const updateStudent = (student) => async(dispatch,getState) =>{
                     Authorization: `Bearer ${userInfo.access}`
                 }
             }
-        console.log({student})
+        console.log({supplier})
         const {data} = await axios.put(
-             `/api/student/update/${student.id}`,
-             student,
+             `/api/studsupplierent/update/${supplier.id}`,
+             supplier,
              config
              ) 
          
          dispatch({
-             type:STUDENT_UPDATE_SUCCESS,
+             type:SUPPLIER_UPDATE_SUCCESS,
              payload:data
          })
 
          dispatch({
-            type:STUDENT_DETAIL_SUCCESS,
+            type:SUPPLIER_DETAIL_SUCCESS,
             payload:data
         })
 
     }catch(error){
         dispatch({ 
-            type: STUDENT_UPDATE_FAIL,
+            type: SUPPLIER_UPDATE_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,
@@ -160,11 +160,11 @@ export const updateStudent = (student) => async(dispatch,getState) =>{
 }
 
 
-export const removeFromStudent = (id) => async(dispatch, getState) => {
+export const removeFromSupplier = (id) => async(dispatch, getState) => {
     try{
         console.log("into delete")
     dispatch({
-        type: STUDENT_DELETE_REQUEST,
+        type: SUPPLIER_DELETE_REQUEST,
     })
         const {
             userLogin: { userInfo },
@@ -177,18 +177,18 @@ export const removeFromStudent = (id) => async(dispatch, getState) => {
             }
         }
         const {data} = await axios.delete(
-         `/api/student/delete/${id}`,
+         `/api/supplier/delete/${id}`,
          config
          ) 
         
         dispatch({
-            type:STUDENT_DELETE_SUCCESS,
+            type:SUPPLIER_DELETE_SUCCESS,
             payload:data
         })
     
     }catch(error){
         dispatch({ 
-            type: STUDENT_DELETE_FAIL,
+            type: SUPPLIER_DELETE_FAIL,
             payload: error.response && error.response.data.detail
             ? error.response.data.detail
             : error.message,

@@ -7,9 +7,9 @@ import School from '../components/School'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 
-import { listStudent,removeFromStudent } from '../actions/studentActions'
+import { listSupplier,removeFromSupplier } from '../actions/supplierActions'
 
-function StudentScreen({ match, location, history}) {
+function SupplierScreen({ match, location, history}) {
     
     //const [name, setName] = useState('')
     //const [represent_person_name, setRepresent_person_name] = useState('')
@@ -17,33 +17,33 @@ function StudentScreen({ match, location, history}) {
     
 
     const dispatch = useDispatch()
-    const studentList = useSelector(state => state.studentList)
-    const { error, loading, students } = studentList
-    const studentDetail = useSelector(state => state.studentDetail)
-    const { detailerror, detailloading, student } = studentDetail
+    const supplierList = useSelector(state => state.supplierList)
+    const { error, loading, suppliers } = supplierList
+    const supplierDetail = useSelector(state => state.supplierDetail)
+    const { detailerror, detailloading, supplier } = supplierDetail
 
-    const redirect = '/student'
+    const redirect = '/supplier'
     useEffect(() =>{
-        dispatch(listStudent())
+        dispatch(listSupplier())
       
 
     },[dispatch])
     
-    const addToStudentHandler =() =>{
-        history.push('/student/create')
+    const addToSupplierHandler =() =>{
+        history.push('/supplier/create')
     }
-    const removeFromStudentHandler = (id) => {
-        dispatch(removeFromStudent(id))
+    const removeFromSupplierHandler = (id) => {
+        dispatch(removeFromSupplier(id))
         window.location.reload()
     }
     return (
         <div>
-            <h1>學生列表</h1>
+            <h1>供應商列表</h1>
             <Button 
-                onClick = {addToStudentHandler}
+                onClick = {addToSupplierHandler}
                 className='btn-block' 
                 type='button'> 
-                新增學生
+                新增供應商
              </Button>
             {loading ? <Loader/>
             : error ? <Message variant='danger'>{error}</Message>
@@ -56,36 +56,32 @@ function StudentScreen({ match, location, history}) {
                             <tr>
                                 <th>動作</th>
                                 <th>ID</th>
-                                <th>學生名字</th>
-                                <th>學校</th>
+                                <th>供應商名字</th>
+                                <th>供應商聯絡人</th>
+                                <th>統一編號</th>
                                 <th>電話</th>
                                 <th>地址</th>
-                                <th>區域標籤</th>
-                                <th>是否為結束個案</th>
                                 <th>備註</th>
-                                <th>檔案</th>
-                                
                             </tr>
                         </thead>
 
                         <tbody>
-                            {students.map(oneStud => (
-                                <tr key={oneStud.id}>
-                                    <td><Link to={`/student/${oneStud.id}/edit`}><Button type="button"><i className='fas fa-edit'></i></Button></Link>
+                            {suppliers.map(oneSupplier => (
+                                <tr key={oneSupplier.id}>
+                                    <td><Link to={`/supplier/${oneSupplier.id}/edit`}><Button type="button"><i className='fas fa-edit'></i></Button></Link>
                                     <Button
                                     type='button'
                                     variant='danger'
-                                    onClick={()=>removeFromStudentHandler(oneStud.id)}><i className='fas fa-trash'> </i>
+                                    onClick={()=>removeFromSupplierHandler(oneSupplier.id)}><i className='fas fa-trash'> </i>
                                     </Button></td>
-                                    <td>{oneStud.id}</td>
-                                    <td>{oneStud.name}</td>
-                                    <td>{oneStud.school}</td>
-                                    <td>{oneStud.phone}</td>
-                                    <td>{oneStud.address}</td>
-                                    <td>{oneStud.tags}</td>
-                                    <td>{oneStud.is_end == true ? "是":"否"}</td>
-                                    <td>{oneStud.memo}</td>
-                                    <td>{oneStud.file}</td>
+                                    <td>{oneSupplier.id}</td>
+                                    <td>{oneSupplier.name}</td>
+                                    <td>{oneSupplier.person}</td>
+                                    <th>{oneSupplier.unicode}</th>
+                                    <td>{oneSupplier.phone}</td>
+                                    <td>{oneSupplier.address}</td>
+                                    <td>{oneSupplier.memo}</td>
+                                   
                                 </tr>
                             ))}
                         </tbody>
@@ -106,4 +102,4 @@ function StudentScreen({ match, location, history}) {
         </div>
     )
 }
-export default StudentScreen
+export default SupplierScreen
