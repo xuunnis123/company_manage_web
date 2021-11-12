@@ -7,8 +7,8 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 
 import {  addOutcome } from '../actions/financeActions'
-import { listMember } from '../actions/memberActions'
-import { listStudent } from '../actions/studentActions'
+import { listCustomer } from '../actions/customerActions'
+import { listSupplier } from '../actions/supplierActions'
 function FinanceOutcomeCreateScreen({history}) {
     const [categoryName, setCategoryName] = useState('請選擇傳票票號')
     const [titleName, setTitleName] = useState('請選擇支出項目')
@@ -45,8 +45,8 @@ function FinanceOutcomeCreateScreen({history}) {
     const { errorStudentList, loadingStudentList, students } = studentList
     useEffect(()=>{
         
-        dispatch(listMember())
-        dispatch(listStudent())
+        dispatch(listCustomer())
+        dispatch(listSupplier())
     },[outcome,history, redirect])
 
     const handleSelectCategory=(e)=>{

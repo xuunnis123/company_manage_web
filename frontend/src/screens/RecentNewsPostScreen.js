@@ -5,7 +5,7 @@ import { Row, Col, ListGroup, Image, Form, Button, Card, FormControl,FormLabel,D
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { listMember, addMember } from '../actions/memberActions'
+import { listCusotmer, addCustomer } from '../actions/customerActions'
 
 function RecentNewsPostScreen() {
    
@@ -22,18 +22,11 @@ function RecentNewsPostScreen() {
     const redirect = '/'
     
     useEffect(()=>{
-       dispatch(listMember())
+       dispatch(listCusotmer())
       
     },[redirect])
 
-    const handleSelectPostBy=(e)=>{
-        
-        var splitIntro = e.split(',');
-        
-        setIntro_by(splitIntro[0])
-
-        setIntro_byName(splitIntro[1]);  
-      }
+  
 
       const submitHandler =(e) =>{
         e.preventDefault()
@@ -47,9 +40,7 @@ function RecentNewsPostScreen() {
     return (
         <FormContainer>
         <h1>新增消息</h1>
-        
-        {error && <Message variant='danger'>{error}</Message>}
-        {loading && <Loader />}
+       
         
         <Form onSubmit={submitHandler}>
 
@@ -88,23 +79,7 @@ function RecentNewsPostScreen() {
        
        
 
-        <Form.Group controlId='post_by'>
-            <Form.Label>發佈人</Form.Label>
-            <DropdownButton
-            aligndown="true"
-            title= {post_by}
-            id="dropdown-menu-align-down"
-            onSelect={handleSelectPostBy}
-                >
-
-        {members.map((member,index) =>{
-        
-        return <Dropdown.Item eventKey={[member._id,member.name]} key={index}>{member.name}</Dropdown.Item>
-        })}
-                   
-        </DropdownButton>
-        
-        </Form.Group>
+       
             <Button type='submit' variant='primary'>
                 建立
             </Button>

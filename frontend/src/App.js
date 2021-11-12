@@ -5,13 +5,6 @@ import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
 
 
-import CaseScreen from './screens/CaseScreen'
-import CaseCreateStudentScreen from './screens/CaseCreateStudentScreen'
-import CaseCreatePhotoScreen from './screens/CaseCreatePhotoScreen'
-import CaseCreateFinanceScreen from './screens/CaseCreateFinanceScreen'
-import CaseCreateScholarshipScreen from './screens/CaseCreateScholarshipScreen'
-import CaseCreateConfirmScreen from './screens/CaseCreateConfirmScreen'
-import CaseCreateStudentConfirmScreen from './screens/CaseCreateStudentConfirmScreen'
 
 import SchoolScreen from './screens/SchoolScreen'
 import SchoolCreateScreen from './screens/SchoolCreateScreen'
@@ -44,9 +37,7 @@ import FinanceIncomeEditScreen from './screens/FinanceIncomeEditScreen'
 import FinanceOutcomeEditScreen from './screens/FinanceOutcomeEditScreen'
 import FinanceOutcomeCreateScreen from './screens/FinanceOutcomeCreateScreen'
 
-import ScholarshipScreen from './screens/ScholarshipScreen'
-import ScholarshipCreateScreen from './screens/ScholarshipCreateScreen'
-import ScholarshipEditScreen from './screens/ScholarshipEditScreen'
+
 
 import SemesterScreen from './screens/SemesterScreen'
 import SemesterCreateScreen from './screens/SemesterCreateScreen'
@@ -60,14 +51,7 @@ function App() {
       <main className="py-3">
         <Container>
           <Route path='/' component={HomeScreen} exact />
-
-          <Route path='/case' component={CaseScreen} exact/>
-         
-          <Route path='/case/createphoto' component={CaseCreatePhotoScreen} />
-          <Route path='/case/createfinance' component={CaseCreateFinanceScreen} />
-          <Route path='/case/createscholarship' component={CaseCreateScholarshipScreen} />
-          <Route path='/case/createconfirm/:id' component={CaseCreateConfirmScreen} />
-
+      
           <Route path='/school' component={SchoolScreen} exact/>
           <Route path='/school/create' component={SchoolCreateScreen} />
           <Route path='/school/detail/:id' component={SchoolDetailScreen} />
@@ -98,10 +82,7 @@ function App() {
           <Route path='/setting/income/moneycategory/:id/edit' component={SettingIncomeMoneyCategoryEditScreen} />
           <Route path='/setting/outcome/contributecontext/:id/edit' component={SettingOutcomeContributeEditScreen} />
           <Route path='/setting/income/contributecontext/:id/edit' component={SettingIncomeContributeEditScreen} />
-          
-          <Route path='/scholarship' component={ScholarshipScreen} exact/>
-          <Route path='/scholarship/create' component={ScholarshipCreateScreen} />
-          <Route path='/scholarship/:id/edit' component={ScholarshipEditScreen} />
+         
 
           <Route path='/semester' component={SemesterScreen} exact/>
           <Route path='/semester/create' component={SemesterCreateScreen} />

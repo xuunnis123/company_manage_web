@@ -7,7 +7,7 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 
 import {  addIncome } from '../actions/financeActions'
-import { listMember, addMember } from '../actions/memberActions'
+import { listCustomer, addCustomer } from '../actions/customerActions'
 function FinanceIncomeCreateScreen({history}) {
     const [categoryName, setCategoryName] = useState('請選擇傳票票號')
     const [titleName, setTitleName] = useState('請選擇收入項目')
@@ -41,7 +41,7 @@ function FinanceIncomeCreateScreen({history}) {
     const { errorList, loadingList, members } = memberList
     useEffect(()=>{
         
-        dispatch(listMember())
+        dispatch(listCustomer())
     },[income,history, redirect])
 
     const handleSelectCategory=(e)=>{

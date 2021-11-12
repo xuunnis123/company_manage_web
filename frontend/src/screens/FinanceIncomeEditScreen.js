@@ -7,7 +7,7 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import {  INCOME_UPDATE_RESET,INCOME_DETAIL_REQUEST } from '../constants/financeConstants'
 import {  incomeDetail,updateIncome } from '../actions/financeActions'
-import { listMember } from '../actions/memberActions'
+import { listCustomer } from '../actions/customerActions'
 function FinanceIncomeEditScreen({match,history}) {
     const incomeId = match.params.id
     const [categoryName, setCategoryName] = useState('請選擇傳票票號')
@@ -49,7 +49,7 @@ function FinanceIncomeEditScreen({match,history}) {
         
         dispatch(incomeDetail(incomeId))
        
-        dispatch(listMember())
+        dispatch(listCustomer())
 
         if(successUpdate){
             

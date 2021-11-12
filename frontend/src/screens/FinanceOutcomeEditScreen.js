@@ -7,8 +7,8 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import {  OUTCOME_UPDATE_RESET,OUTCOME_DETAIL_REQUEST } from '../constants/financeConstants'
 import {  outcomeDetail,updateOutcome } from '../actions/financeActions'
-import { listMember } from '../actions/memberActions'
-import { listStudent } from '../actions/studentActions'
+import { listCustomer } from '../actions/customerActions'
+import { listSupplier } from '../actions/supplierActions'
 
 function FinanceOutcomeEditScreen({match,history}) {
     const outcomeId = match.params.id
@@ -40,8 +40,8 @@ function FinanceOutcomeEditScreen({match,history}) {
     const memberList = useSelector(state => state.memberList)
     const { errorList, loadingList, members } = memberList
 
-    const studentList = useSelector(state => state.studentList)
-    const { errorStudentList, loadingStudnetList, students } = studentList
+    const supplierList = useSelector(state => state.supplierList)
+    const { errorSupplierList, loadingStudnetList, suppliers } = supplierList
 
     const outcomeUpdate = useSelector(state => state.outcomeUpdate)
     const { updateerror, updateloading, success: successUpdate } = outcomeUpdate
@@ -54,8 +54,8 @@ function FinanceOutcomeEditScreen({match,history}) {
         
         dispatch(outcomeDetail(outcomeId))
         
-        dispatch(listStudent())
-        dispatch(listMember())
+        dispatch(listSupplier())
+        dispatch(listCustomer())
 
         if(successUpdate){
             
@@ -220,9 +220,9 @@ function FinanceOutcomeEditScreen({match,history}) {
                         onSelect={handleSelectTo_whom}
                             >
 
-                    {students.map((student,index) =>{
+                    {suppliers.map((supplier,index) =>{
                     
-                    return <Dropdown.Item eventKey={[student._id,student.name]} key={index}>{student.name}</Dropdown.Item>
+                    return <Dropdown.Item eventKey={[supplier._id,supplier.name]} key={index}>{supplier.name}</Dropdown.Item>
                     })}
                             
                     </DropdownButton>
