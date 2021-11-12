@@ -1,0 +1,7 @@
+
+*.pyc
+backend/.DS_Store
+backend/base/auth.ini
+*.ini
+*.sqlite3
+frontend/src/config.js
