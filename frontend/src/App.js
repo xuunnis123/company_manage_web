@@ -18,9 +18,9 @@ import SchoolCreateScreen from './screens/SchoolCreateScreen'
 import SchoolEditScreen from './screens/SchoolEditScreen'
 import SchoolDetailScreen  from './screens/SchoolDetailScreen'
 
-import StudentScreen  from './screens/StudentScreen'
-import StudentCreateScreen from './screens/StudentCreateScreen'
-import StudentEditScreen from './screens/StudentEditScreen'
+import SupplierScreen  from './screens/SupplierScreen'
+import SupplierCreateScreen from './screens/SupplierCreateScreen'
+import SupplierEditScreen from './screens/SupplierEditScreen'
 
 import CustomerScreen from './screens/CustomerScreen'
 import CustomerCreateScreen from './screens/CustomerCreateScreen'
@@ -62,8 +62,7 @@ function App() {
           <Route path='/' component={HomeScreen} exact />
 
           <Route path='/case' component={CaseScreen} exact/>
-          <Route path='/case/createstudent' component={CaseCreateStudentScreen} />
-          <Route path='/case/confirmedstudent' component={CaseCreateStudentConfirmScreen} />
+         
           <Route path='/case/createphoto' component={CaseCreatePhotoScreen} />
           <Route path='/case/createfinance' component={CaseCreateFinanceScreen} />
           <Route path='/case/createscholarship' component={CaseCreateScholarshipScreen} />
@@ -74,9 +73,9 @@ function App() {
           <Route path='/school/detail/:id' component={SchoolDetailScreen} />
           <Route path='/school/:id/edit' component={SchoolEditScreen} />
           
-          <Route path='/student' component={StudentScreen} exact/>
-          <Route path='/student/create' component={StudentCreateScreen} />
-          <Route path='/student/:id/edit' component={StudentEditScreen} />
+          <Route path='/supplier' component={SupplierScreen} exact/>
+          <Route path='/supplier/create' component={SupplierCreateScreen} />
+          <Route path='/supplier/:id/edit' component={SupplierEditScreen} />
 
           <Route path='/customer' component={CustomerScreen} exact/>
           <Route path='/customer/create' component={CustomerCreateScreen} />

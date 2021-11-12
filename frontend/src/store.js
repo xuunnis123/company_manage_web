@@ -8,7 +8,7 @@ import { orderCreateReducer } from './reducers/orderReducers'
 
 import {  schoolListReducers, schoolDetailsReducer, schoolAddReducers, schoolUpdateReducers} from './reducers/schoolReducers'
 
-import { studentListReducers,studentAddReducers,studentDetailsReducer,studentUpdateReducers } from './reducers/studentReducers'
+import { supplierListReducers,supplierAddReducers,supplierDetailsReducer,supplierUpdateReducers } from './reducers/supplierReducers'
 
 import { customerListReducers,customerAddReducers,customerDetailsReducer,customerUpdateReducers } from './reducers/customerReducers'
 
@@ -35,10 +35,10 @@ const reducer = combineReducers({
     schoolDetail:schoolDetailsReducer,
     schoolList:schoolListReducers,
 
-    studentList:studentListReducers,
-    studentAdd:studentAddReducers,
-    studentUpdate:studentUpdateReducers,
-    studentDetail:studentDetailsReducer,
+    supplierList:supplierListReducers,
+    supplierAdd:supplierAddReducers,
+    supplierUpdate:supplierUpdateReducers,
+    supplierDetail:supplierDetailsReducer,
 
     customerList:customerListReducers,
     customerAdd:customerAddReducers,
