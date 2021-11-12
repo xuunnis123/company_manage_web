@@ -5,38 +5,38 @@ import { Table, Row, Col, ListGroup, Image, Form, Button, Card } from 'react-boo
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
-import { listMember,removeFromMember } from '../actions/memberActions'
+import { listCustomer,removeFromCustomer } from '../actions/customerActions'
 
 function MemberScreen({ match, location, history}) {
   
 
     const dispatch = useDispatch()
-    const memberList = useSelector(state => state.memberList)
-    const { error, loading, members } = memberList
+    const customerList = useSelector(state => state.customerList)
+    const { error, loading, customers } = customerList
 
 
-    const redirect = '/member'
+    const redirect = '/customer'
     useEffect(() =>{
-        dispatch(listMember())
+        dispatch(listCustomer())
       
 
     },[dispatch])
     
-    const addToMemberHandler =() =>{
-        history.push('/member/create')
+    const addToCustomerHandler =() =>{
+        history.push('/customer/create')
     }
-    const removeFromMemberHandler = (id) => {
-        dispatch(removeFromMember(id))
+    const removeFromCustomerHandler = (id) => {
+        dispatch(removeFromCustomer(id))
         window.location.reload()
     }
     return (
         <div>
-            <h1>會員列表</h1>
+            <h1>客戶列表</h1>
             <Button 
-                onClick = {addToMemberHandler}
+                onClick = {addToCustomerHandler}
                 className='btn-block' 
                 type='button'> 
-                新增會員
+                新增客戶
              </Button>
             {loading ? <Loader/>
             : error ? <Message variant='danger'>{error}</Message>
@@ -49,41 +49,35 @@ function MemberScreen({ match, location, history}) {
                             <tr>
                                 <th>動作</th>
                                 <th>ID</th>
-                                <th>會員名字</th>
+                                <th>客戶名字</th>
                                 <th>職業</th>
                                 <th>電話</th>
+                                <th>手機</th>
                                 <th>地址</th>
-                                <th>服務名稱</th>
-                                <th>是否為慈善會會員</th>
-                                <th>是否為管理員</th>
                                 <th>備註</th>
-                                <th>家族</th>
-                                <th>介紹人</th>
+                               
                                 
                             </tr>
                         </thead>
 
                         <tbody>
-                            {members.map(oneMem => (
+                            {customers.map(oneMem => (
                                 <tr key={oneMem._id}>
-                                    <td><Link to={`/member/${oneMem._id}/edit`}><Button type="button"><i className='fas fa-edit'></i></Button></Link>
+                                    <td><Link to={`/customer/${oneMem._id}/edit`}><Button type="button"><i className='fas fa-edit'></i></Button></Link>
                                     <Button
                                     type='button'
                                     variant='danger'
-                                    onClick={()=>removeFromMemberHandler(oneMem._id)}><i className='fas fa-trash'> </i>
+                                    onClick={()=>removeFromCustomerHandler(oneMem._id)}><i className='fas fa-trash'> </i>
                                     </Button></td>
                                     
                                     <td>{oneMem._id}</td>
                                     <td>{oneMem.name}</td>
                                     <td>{oneMem.job}</td>
                                     <td>{oneMem.phone}</td>
+                                    <td>{oneMem.cellphone}</td>
                                     <td>{oneMem.address}</td>
-                                    <td>{oneMem.title}</td>
-                                    <td>{oneMem.is_staff == true ? "是":"否"}</td>
-                                    <td>{oneMem.is_admin == true ? "是":"否"}</td>
                                     <td>{oneMem.memo}</td>
-                                    <td>{oneMem.family}</td>
-                                    <td>{oneMem.intro_by}</td>
+                                  
                                 </tr>
                             ))}
                         </tbody>

@@ -49,38 +49,32 @@ function Header() {
 
                     <LinkContainer to='/'>
 
-                        <Navbar.Brand>Organization Web</Navbar.Brand>
+                        <Navbar.Brand>Company Web</Navbar.Brand>
 
                     </LinkContainer>
                     
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <LinkContainer to='/case'>
-                                <Nav.Link><i className="fas fa-briefcase"></i> 關懷戶</Nav.Link>
+                            <LinkContainer to='/order'>
+                                <Nav.Link><i className="fas fa-briefcase"></i> 訂單</Nav.Link>
                                 
                             </LinkContainer>
-                            <LinkContainer to='/scholarship'>
-                                <Nav.Link><i className="fas fa-envelope-open-text"></i> 獎學金</Nav.Link>
+                            <LinkContainer to='/storage'>
+                                <Nav.Link><i className="fas fa-envelope-open-text"></i> 庫存管理</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to='/finance'>
                                 <Nav.Link><i className="fas fa-dollar-sign"></i> 財務</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to='/org_data'>
-                                <Nav.Link><i className="fas fa-database"></i> 會務資料</Nav.Link>
+                            <LinkContainer to='/customer'>
+                                <Nav.Link><i className="fas fa-database"></i> 客戶資料</Nav.Link>
                             </LinkContainer>
                             
-                            <LinkContainer to='/member'>
-                                <Nav.Link><i className="fas fa-user-friends"></i> 會員及監事名冊</Nav.Link>
+                            <LinkContainer to='/supplier'>
+                                <Nav.Link><i className="fas fa-user-friends"></i> 供應商資料</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to='/student'>
-                                <Nav.Link><i className="fas fa-graduation-cap"></i> 學生資料</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to='/school'>
-                                <Nav.Link><i className="fas fa-school"></i> 學校資料</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to='/memo'>
-                                <Nav.Link><i className="far fa-clipboard"></i> 關懷戶記事</Nav.Link>
+                            <LinkContainer to='/item'>
+                                <Nav.Link><i className="fas fa-envelope-open-text"></i> 品項管理</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to='/setting'>
                                 <Nav.Link><i className="far fa-clipboard"></i> 參數設定</Nav.Link>

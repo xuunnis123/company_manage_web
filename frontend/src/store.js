@@ -10,7 +10,7 @@ import {  schoolListReducers, schoolDetailsReducer, schoolAddReducers, schoolUpd
 
 import { studentListReducers,studentAddReducers,studentDetailsReducer,studentUpdateReducers } from './reducers/studentReducers'
 
-import { memberListReducers,memberAddReducers,memberDetailsReducer,memberUpdateReducers } from './reducers/memberReducers'
+import { customerListReducers,customerAddReducers,customerDetailsReducer,customerUpdateReducers } from './reducers/customerReducers'
 
 import { financeListReducers,incomeListReducers,outcomeListReducers,incomeDetailsReducer,outcomeDetailsReducer,incomeAddReducers,outcomeAddReducers,incomeUpdateReducers,outcomeUpdateReducers ,incomeSumReducers, outcomeSumReducers,outcomeFinanceListReducer} from './reducers/financeReducers'
 
@@ -40,10 +40,10 @@ const reducer = combineReducers({
     studentUpdate:studentUpdateReducers,
     studentDetail:studentDetailsReducer,
 
-    memberList:memberListReducers,
-    memberAdd:memberAddReducers,
-    memberUpdate:memberUpdateReducers,
-    memberDetail:memberDetailsReducer,
+    customerList:customerListReducers,
+    customerAdd:customerAddReducers,
+    customerUpdate:customerUpdateReducers,
+    customerDetail:customerDetailsReducer,
 
     financeList:financeListReducers,
     incomeList:incomeListReducers,

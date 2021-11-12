@@ -22,9 +22,9 @@ import StudentScreen  from './screens/StudentScreen'
 import StudentCreateScreen from './screens/StudentCreateScreen'
 import StudentEditScreen from './screens/StudentEditScreen'
 
-import MemberScreen from './screens/MemberScreen'
-import MemberCreateScreen from './screens/MemberCreateScreen'
-import MemberEditScreen from './screens/MemberEditScreen'
+import CustomerScreen from './screens/CustomerScreen'
+import CustomerCreateScreen from './screens/CustomerCreateScreen'
+import CustomerEditScreen from './screens/CustomerEditScreen'
 
 import SettingScreen from './screens/SettingScreen'
 
@@ -78,9 +78,9 @@ function App() {
           <Route path='/student/create' component={StudentCreateScreen} />
           <Route path='/student/:id/edit' component={StudentEditScreen} />
 
-          <Route path='/member' component={MemberScreen} exact/>
-          <Route path='/member/create' component={MemberCreateScreen} />
-          <Route path='/member/:id/edit' component={MemberEditScreen} />
+          <Route path='/customer' component={CustomerScreen} exact/>
+          <Route path='/customer/create' component={CustomerCreateScreen} />
+          <Route path='/customer/:id/edit' component={CustomerEditScreen} />
 
           <Route path='/finance' component={FinanceScreen} exact/>
           <Route path='/finance/income/create' component={FinanceIncomeCreateScreen} />
