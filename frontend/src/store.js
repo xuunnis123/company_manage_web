@@ -1,12 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { productListReducers ,productDetailsReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
 import { userLoginReducers, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userLoginGoogleReducers} from './reducers/userReducers'
 import { orderCreateReducer } from './reducers/orderReducers'
 
-import {  schoolListReducers, schoolDetailsReducer, schoolAddReducers, schoolUpdateReducers} from './reducers/schoolReducers'
+import {  productListReducer, productDetailsReducer, productDeleteReducer, productCreateReducer, productUpdateReducer} from './reducers/productReducers'
 
 import { supplierListReducers,supplierAddReducers,supplierDetailsReducer,supplierUpdateReducers } from './reducers/supplierReducers'
 
@@ -18,8 +17,7 @@ import { incomeContributeContextListReducers,outcomeContributeContextListReducer
 
 import {semesterListReducers,semesterDetailsReducer,semesterAddReducers,semesterUpdateReducers} from './reducers/semesterReducers'
 const reducer = combineReducers({
-    productList: productListReducers,
-    productDetails: productDetailsReducer,
+    
     cart:cartReducer,
     userLogin:userLoginReducers,
     userRegister:userRegisterReducer,
@@ -28,10 +26,11 @@ const reducer = combineReducers({
     userLoginGoogle:userLoginGoogleReducers,
     orderCreate:orderCreateReducer,
 
-    schoolAdd :schoolAddReducers,
-    schoolUpdate:schoolUpdateReducers,
-    schoolDetail:schoolDetailsReducer,
-    schoolList:schoolListReducers,
+    productList:productListReducer,
+    productDetails:productDetailsReducer,
+    productDelete:productDeleteReducer,
+    productCreate:productCreateReducer,
+    productUpdate:productUpdateReducer,
 
     supplierList:supplierListReducers,
     supplierAdd:supplierAddReducers,

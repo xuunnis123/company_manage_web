@@ -73,7 +73,7 @@ function Header() {
                             <LinkContainer to='/supplier'>
                                 <Nav.Link><i className="fas fa-user-friends"></i> 供應商資料</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to='/item'>
+                            <LinkContainer to='/product'>
                                 <Nav.Link><i className="fas fa-envelope-open-text"></i> 品項管理</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to='/setting'>
