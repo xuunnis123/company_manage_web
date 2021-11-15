@@ -49,7 +49,7 @@ function Header() {
 
                     <LinkContainer to='/'>
 
-                        <Navbar.Brand>Company Web</Navbar.Brand>
+                        <Navbar.Brand>測試公司網站</Navbar.Brand>
 
                     </LinkContainer>
                     
@@ -57,7 +57,7 @@ function Header() {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <LinkContainer to='/order'>
-                                <Nav.Link><i className="fas fa-briefcase"></i> 訂單</Nav.Link>
+                                <Nav.Link><i className="fas fa-briefcase"></i> 訂單管理</Nav.Link>
                                 
                             </LinkContainer>
                             <LinkContainer to='/storage'>
