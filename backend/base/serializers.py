@@ -122,13 +122,6 @@ class CaseSerializer(serializers.ModelSerializer):
 
     
     
-    def get_student(self, obj):
-        
-        student = obj.student_name
-        serializer = StudentSerializer(student, many=False)
-        return serializer.data
-
-    
     
 
 
@@ -153,20 +146,14 @@ class MemberSerializer(serializers.ModelSerializer):
         return serializer.data['name']
 
     
-class StudentSerializer(serializers.ModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
     school = serializers.SerializerMethodField(read_only = True)
     
     class Meta:
-        model = Student
+        model = Customer
         fields = '__all__'
     
 
-    def get_school(self, obj):
-        school_one = obj.school
-        
-        serializer = SchoolSerializer(school_one, many=False)
-       
-        return serializer.data['name']
 class OutcomeMoneyCategorySerilizer(serializers.ModelSerializer):
     class Meta:
             model = OutcomeMoneyCategory

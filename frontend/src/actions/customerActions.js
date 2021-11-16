@@ -72,7 +72,7 @@ export const customerDetail = (id) => async(dispatch) =>{
 }
 
 
-export const addCustomer = ( name,job, phone, cellphone, address, memo) => async(dispatch,getState) =>{
+export const addCustomer = ( name, job, phone, cellphone, address, memo) => async(dispatch,getState) =>{
     try{
         dispatch({
 
