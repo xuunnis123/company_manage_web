@@ -30,20 +30,17 @@ class School(models.Model):
 
     def __str__(self):
         return self.name
+#name,job, phone,cellphone, address, memo
 
-class Student(models.Model):
+class Customer(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
-    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True)
     phone = models.CharField(max_length=200, null=True, blank=True)
+    cellphone = models.CharField(max_length=200, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
-    tags = models.CharField(max_length=200, null=True, blank=True) #分區
-    is_end = models.BooleanField(default=False)
+    job = models.CharField(max_length=200, null=True, blank=True) 
     memo = models.CharField(max_length=200, null=True, blank=True)
-    file = models.ImageField(null=True, blank=True,
-                              default='/placeholder.png')
     created_at = models.DateTimeField(auto_now_add=True)
-
-
+    
     def __str__(self):
         return str(self.name)
 
@@ -63,7 +60,7 @@ class OutcomeContributeContext(models.Model): #資助項目
 
 class IncomeContributeItem(models.Model):
     item_name = models.ForeignKey(IncomeContributeContext, on_delete=models.SET_NULL, null=True,related_name="income_contribute_context")
-    student_name = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True,related_name="income_contribute_studnet")
+    student_name = models.ForeignKey("", on_delete=models.SET_NULL, null=True,related_name="income_contribute_studnet")
     name = models.CharField(max_length=200, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True, default=0)
     semester = models.ForeignKey(
@@ -76,7 +73,7 @@ class IncomeContributeItem(models.Model):
 
 class OutcomeContributeItem(models.Model):
     item_name = models.ForeignKey(OutcomeContributeContext, on_delete=models.SET_NULL, null=True,related_name="outcome_contribute_context")
-    student_name = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True,related_name="outcome_contribute_studnet")
+    student_name = models.ForeignKey("", on_delete=models.SET_NULL, null=True,related_name="outcome_contribute_studnet")
     name = models.CharField(max_length=200, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True, default=0)
     semester = models.ForeignKey(
@@ -88,7 +85,7 @@ class OutcomeContributeItem(models.Model):
         return str(self.name)
 class Case(models.Model):
     case_no = models.CharField(max_length=200, null=True, blank=True)
-    student_name = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, related_name="student_case")
+    student_name = models.ForeignKey("", on_delete=models.SET_NULL, null=True, related_name="student_case")
     visit_photo = models.CharField(max_length=200, null=True, blank=True)
     applied_form_photo = models.CharField(max_length=200, null=True, blank=True)
     visit_form_photo = models.CharField(max_length=200, null=True, blank=True)
