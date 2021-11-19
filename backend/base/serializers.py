@@ -96,54 +96,19 @@ class UserSerializerWithToken(UserSerializer):
     def get_token(self,obj):
         token = RefreshToken.for_user(obj)
         return str(token.access_token)
-class SchoolSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = School
-        fields = '__all__'
 
-class CaseSerializer(serializers.ModelSerializer):
-    scholarship = serializers.SerializerMethodField(read_only = True)
+
     
-    student = serializers.SerializerMethodField(read_only = True)
+    
+
+
+class SupplierSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = Case
-        fields = '__all__'
-
-    def get_scholarship(self, obj):
-        try:
-
-            scholarship = obj.scholarship
-        except :
-            scholarship = None
-
-        serializer = ScholarshipSerializer(scholarship, many=True)
-        return serializer.data
-
-    
-    
-    
-
-
-class MemberSerializer(serializers.ModelSerializer):
-    family = serializers.SerializerMethodField(read_only = True)
-    intro_by = serializers.SerializerMethodField(read_only = True)
-    class Meta:
-        model = Member
+        model = Supplier
         fields = '__all__'
     
-    def get_family(self, obj):
-        family_one = obj.family
-    
-        serializer = MemberSerializer(family_one, many=False)
-       
-        return serializer.data['name']
-
-    def get_intro_by(self, obj):
-        intro_by_one = obj.intro_by
-        serializer = MemberSerializer(intro_by_one, many=False)
-        
-        return serializer.data['name']
+   
 
     
 class CustomerSerializer(serializers.ModelSerializer):
@@ -154,145 +119,3 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
 
-class OutcomeMoneyCategorySerilizer(serializers.ModelSerializer):
-    class Meta:
-            model = OutcomeMoneyCategory
-            fields = '__all__'
-
-class IncomeMoneyCategorySerilizer(serializers.ModelSerializer):
-    class Meta:
-            model = IncomeMoneyCategory
-            fields = '__all__'
-
-class IncomeContributeContextSerilizer(serializers.ModelSerializer):
-    class Meta:
-            model = IncomeContributeContext
-            fields = '__all__'
-
-class OutcomeContributeContextSerilizer(serializers.ModelSerializer):
-    class Meta:
-            model = OutcomeContributeContext
-            fields = '__all__'
-
-class IncomeSerializer(serializers.ModelSerializer):
-    category = serializers.SerializerMethodField(read_only = True)
-    title = serializers.SerializerMethodField(read_only = True)
-    from_whom = serializers.SerializerMethodField(read_only = True)
-    confirmed_person = serializers.SerializerMethodField(read_only = True)
-
-
-    class Meta:
-        model = InCome
-        fields = '__all__'
-    
-
-    def get_category(self, obj):
-        category_one = obj.category
-        
-        serializer = IncomeMoneyCategorySerilizer(category_one, many=False)
-        
-        return serializer.data['name']
-    def get_title(self, obj):
-        title_one = obj.title
-        
-        serializer = IncomeContributeContextSerilizer(title_one, many=False)
-        
-        return serializer.data['context']
-
-    def get_from_whom(self, obj):
-        member_one = obj.from_whom
-        
-        serializer = MemberSerializer(member_one, many=False)
-        
-        return serializer.data['name']
-
-    def get_confirmed_person(self, obj):
-        member_one = obj.confirmed_person
-        
-        serializer = MemberSerializer(member_one, many=False)
-       
-        return serializer.data['name']
-
-class OutcomeSerializer(serializers.ModelSerializer):
-    category = serializers.SerializerMethodField(read_only = True)
-    title = serializers.SerializerMethodField(read_only = True)
-    to_whom = serializers.SerializerMethodField(read_only = True)
-    confirmed_person = serializers.SerializerMethodField(read_only = True)
-
-
-    class Meta:
-        model = OutCome
-        fields = '__all__'
-
-    def get_category(self, obj):
-        category_one = obj.category
-        
-        serializer = OutcomeMoneyCategorySerilizer(category_one, many=False)
-        
-        return serializer.data['name']
-    def get_title(self, obj):
-        title_one = obj.title
-        
-        serializer = OutcomeContributeContextSerilizer(title_one, many=False)
-        
-        return serializer.data['context']
-
-    def get_to_whom(self, obj):
-        to_whom_one = obj.to_whom
-        
-        serializer = StudentSerializer(to_whom_one, many=False)
-        
-        return serializer.data['name']
-
-    def get_confirmed_person(self, obj):
-        member_one = obj.confirmed_person
-        
-        serializer = MemberSerializer(member_one, many=False)
-       
-        return serializer.data['name']
-
-class SemesterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Semester
-        fields = '__all__'
-
-class ScholarshipSerializer(serializers.ModelSerializer):
-    name = serializers.SerializerMethodField(read_only = True)
-    semester = serializers.SerializerMethodField(read_only = True)
-
-    class Meta:
-        model = Scholarship
-        fields = '__all__'
-
-    def get_name(self, obj):
-        studentname = obj.name
-        
-        serializer = StudentSerializer(studentname, many=False)
-        
-        return serializer.data['name']
-
-    def get_semester(self, obj):
-        semesterone = obj.semester
-        
-        serializer = SemesterSerializer(semesterone, many=False)
-        
-        return serializer.data['name']
-
-class ScholarshipWithOutcomeRelationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ScholarshipWithOutcomeRelation
-        fields = '__all__'
-
-class StudentsPhotoLinkSerializer(serializers.ModelSerializer):
-    student_name = serializers.SerializerMethodField(read_only = True)
-
-    class Meta:
-        model = StudentsPhotoLink
-        fields = '__all__'
-
-    def get_student_name(self, obj):
-        studentname = obj.student_name
-        
-        serializer = StudentSerializer(studentname, many=False)
-        
-        return serializer.data['name']
