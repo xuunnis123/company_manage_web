@@ -8,10 +8,7 @@ import ProductsScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import ProductCreateScreen from './screens/ProductCreateScreen'
 
-import SchoolScreen from './screens/SchoolScreen'
-import SchoolCreateScreen from './screens/SchoolCreateScreen'
-import SchoolEditScreen from './screens/SchoolEditScreen'
-import SchoolDetailScreen  from './screens/SchoolDetailScreen'
+
 
 import SupplierScreen  from './screens/SupplierScreen'
 import SupplierCreateScreen from './screens/SupplierCreateScreen'
@@ -54,10 +51,7 @@ function App() {
         <Container>
           <Route path='/' component={HomeScreen} exact />
       
-          <Route path='/school' component={SchoolScreen} exact/>
-          <Route path='/school/create' component={SchoolCreateScreen} />
-          <Route path='/school/detail/:id' component={SchoolDetailScreen} />
-          <Route path='/school/:id/edit' component={SchoolEditScreen} />
+        
           
           <Route path='/supplier' component={SupplierScreen} exact/>
           <Route path='/supplier/create' component={SupplierCreateScreen} />

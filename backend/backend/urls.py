@@ -22,16 +22,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('api/users/',include('base.urls.user_urls')),
-    path('api/school/',include('base.urls.school_urls')),
-    path('api/case/',include('base.urls.case_urls')),
+   
     path('api/customer/',include('base.urls.customer_urls')),
-    path('api/member/',include('base.urls.member_urls')),
-    path('api/finance/',include('base.urls.finance_urls')),
-    path('api/setting/',include('base.urls.setting_urls')),
-    path('api/semester/',include('base.urls.semester_urls')),
-    path('api/scholarship/',include('base.urls.scholarship_urls')),
-
-    path('api/imgur/',include('base.urls.imgur_urls')),
+    path('api/supplier/',include('base.urls.supplier_urls')),
+    #path('api/finance/',include('base.urls.finance_urls')),
+    #path('api/setting/',include('base.urls.setting_urls')),
+   
     
 ]
 

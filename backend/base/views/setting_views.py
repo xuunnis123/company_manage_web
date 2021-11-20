@@ -5,13 +5,13 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 from django.contrib.auth.models import User
-from base.models import IncomeContributeItem, IncomeMoneyCategory, IncomeContributeContext,OutcomeMoneyCategory, OutcomeContributeContext,OutcomeContributeItem
+#from base.models import IncomeContributeItem, IncomeMoneyCategory, IncomeContributeContext,OutcomeMoneyCategory, OutcomeContributeContext,OutcomeContributeItem
 
 from django.db.models import F, Sum
-from base.serializers import OutcomeMoneyCategorySerilizer, IncomeMoneyCategorySerilizer,IncomeContributeContextSerilizer,OutcomeContributeContextSerilizer
+#from base.serializers import OutcomeMoneyCategorySerilizer, IncomeMoneyCategorySerilizer,IncomeContributeContextSerilizer,OutcomeContributeContextSerilizer
 
 from rest_framework import status
-
+'''
 @api_view(['GET'])
 def getIncomeContributeContextList(request):
     incomeContributeContextList = IncomeContributeContext.objects.all()
@@ -224,3 +224,5 @@ def deleteOutcomeMoneyCategory(request, pk):
     outcomeMoneyCategoryForDeletion = OutcomeMoneyCategory.objects.get(_id=pk)
     outcomeMoneyCategoryForDeletion.delete()
     return Response('此支出單據類型已刪除')
+
+'''

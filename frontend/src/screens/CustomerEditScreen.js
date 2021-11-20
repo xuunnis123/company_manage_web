@@ -17,7 +17,6 @@ function CustomerEditScreen({ match, history}) {
     const [phone, setPhone] = useState('')
     const [cellphone, setCellphone] = useState('')
     const [address, setAddress] = useState('')
-    const [title, setTitle] = useState('')
    
     const [memo, setMemo] = useState('')
    
@@ -48,10 +47,10 @@ function CustomerEditScreen({ match, history}) {
             dispatch({ type: CUSTOMER_UPDATE_RESET })
             history.push(redirect)
         }else{
-            if (!customer.name || customer._id != Number(customerId)){
+            if (!customer.name || customer.id != Number(customerId)){
                 console.log("if")
                 console.log(customer)
-                console.log("member.id=",customer._id)
+                console.log("member.id=",customer.id)
                 console.log("memberId=",customerId)
                 dispatch(listCustomer())
             }else{
@@ -69,7 +68,7 @@ function CustomerEditScreen({ match, history}) {
             }
             
         }
-    },[customer._id])
+    },[customer.id])
 
     
     
@@ -79,7 +78,7 @@ function CustomerEditScreen({ match, history}) {
        
         e.preventDefault()
         dispatch(updateCustomer({
-            _id:customerId,
+            id:customerId,
             name,
             job, 
             phone, 

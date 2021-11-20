@@ -112,7 +112,7 @@ class SupplierSerializer(serializers.ModelSerializer):
 
     
 class CustomerSerializer(serializers.ModelSerializer):
-    school = serializers.SerializerMethodField(read_only = True)
+    
     
     class Meta:
         model = Customer

@@ -93,7 +93,7 @@ function CustomerCreateScreen({ match, location, history}) {
                         type='cellphone'
                         placeholder='輸入手機'
                         value={cellphone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => setCellphone(e.target.value)}
                     >
 
                     </Form.Control>

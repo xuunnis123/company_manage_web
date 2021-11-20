@@ -1,8 +1,9 @@
 from django.urls import path
-from base.views import setting_views as views
+
+#from base.views import setting_views as views
 
 urlpatterns =[
-  
+  '''
     path('income/contributeContextList', views.getIncomeContributeContextList, name="get_income_contribute_contextList"),
     path('income/contributeContext/<str:pk>', views.getIncomeContributeContext, name="get_income_contribute_context"),
     path('income/contributeContext/create/', views.addIncomeContributeContext, name="add_income_contribute_context"),
@@ -27,6 +28,6 @@ urlpatterns =[
     path('outcome/moneycategory/update/<str:pk>', views.updateOutcomeMoneyCategory, name="update_outcome_moneycategory"),
     path('outcome/moneycategory/delete/<str:pk>', views.deleteOutcomeMoneyCategory, name="delete_outcome_moneycategory"),
 
-
+'''
 
 ]

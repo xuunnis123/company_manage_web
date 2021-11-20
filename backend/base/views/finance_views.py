@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 
 from django.contrib.auth.models import User
-from base.models import InCome, IncomeMoneyCategory, IncomeContributeContext,OutcomeMoneyCategory, OutcomeContributeContext, Member, Student, OutCome
+from base.models import Supplier, Student
 
 from django.db.models import F, Sum
 from base.serializers import IncomeSerializer, OutcomeSerializer
@@ -13,7 +13,7 @@ from base.serializers import IncomeSerializer, OutcomeSerializer
 from rest_framework import status
 
 
-
+'''
 @api_view(['GET'])
 def getIncomeList(request):
     incomes = InCome.objects.all()
@@ -455,3 +455,4 @@ def calculateAllMoney(request):
    
     return Response(str(total))
 
+'''
