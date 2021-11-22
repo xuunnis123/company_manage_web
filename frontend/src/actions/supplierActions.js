@@ -133,7 +133,7 @@ export const updateSupplier = (supplier) => async(dispatch,getState) =>{
             }
         console.log({supplier})
         const {data} = await axios.put(
-             `/api/studsupplierent/update/${supplier.id}`,
+             `/api/studsupplierent/update/${supplier._id}`,
              supplier,
              config
              ) 

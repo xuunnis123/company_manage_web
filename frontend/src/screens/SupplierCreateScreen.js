@@ -83,10 +83,10 @@ function SupplierCreateScreen({ match, location, history}) {
             <Form.Group controlId='unicode'>
                 <Form.Label>統一編號</Form.Label>
                 <Form.Control
-                        required
-                        type='number'
+                        
+                        type='unicode'
                         placeholder='輸入統一編號'
-                        value={person}
+                        value={unicode}
                         onChange={(e) => setUnicode(e.target.value)}
                     >
                 </Form.Control>

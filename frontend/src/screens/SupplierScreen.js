@@ -67,14 +67,14 @@ function SupplierScreen({ match, location, history}) {
 
                         <tbody>
                             {suppliers.map(oneSupplier => (
-                                <tr key={oneSupplier.id}>
-                                    <td><Link to={`/supplier/${oneSupplier.id}/edit`}><Button type="button"><i className='fas fa-edit'></i></Button></Link>
+                                <tr key={oneSupplier._id}>
+                                    <td><Link to={`/supplier/${oneSupplier._id}/edit`}><Button type="button"><i className='fas fa-edit'></i></Button></Link>
                                     <Button
                                     type='button'
                                     variant='danger'
-                                    onClick={()=>removeFromSupplierHandler(oneSupplier.id)}><i className='fas fa-trash'> </i>
+                                    onClick={()=>removeFromSupplierHandler(oneSupplier._id)}><i className='fas fa-trash'> </i>
                                     </Button></td>
-                                    <td>{oneSupplier.id}</td>
+                                    <td>{oneSupplier._id}</td>
                                     <td>{oneSupplier.name}</td>
                                     <td>{oneSupplier.person}</td>
                                     <th>{oneSupplier.unicode}</th>

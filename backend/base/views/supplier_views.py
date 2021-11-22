@@ -99,7 +99,7 @@ def updateSupplier(request, pk):
     
 
 @api_view(['DELETE'])
-@permission_classes([IsAdminUser])
+@permission_classes([IsAuthenticated])
 def deleteSupplier(request, pk):
     supplierForDeletion = Supplier.objects.get(_id=pk)
     supplierForDeletion.delete()

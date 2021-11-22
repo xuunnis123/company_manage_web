@@ -41,9 +41,9 @@ function SupplierEditScreen({ match, history}) {
             dispatch({ type: SUPPLIER_UPDATE_RESET })
             history.push(redirect)
         }else{
-            if (!supplier.name || supplier.id != Number(supplierId)){
+            if (!supplier.name || supplier._id != Number(supplierId)){
                 console.log("if")
-                console.log("supplier.id=",supplier.id)
+                console.log("supplier.id=",supplier._id)
                 console.log("supplierId=",supplierId)
                 dispatch(listSupplier())
             }else{
@@ -62,7 +62,7 @@ function SupplierEditScreen({ match, history}) {
             }
             
         }
-    },[supplier.id])
+    },[supplier._id])
 //[dispatch, history,supplierId,supplier,successUpdate,schools]
    
     
@@ -78,7 +78,7 @@ function SupplierEditScreen({ match, history}) {
             memo)
         e.preventDefault()
         dispatch(updateSupplier({
-            id: supplierId,
+            _id: supplierId,
             name,
             person,
             unicode,
