@@ -60,7 +60,7 @@ def addCustomer(request):
 @permission_classes([IsAuthenticated])
 def updateCustomer(request, pk):
 
-    customer = Customer.objects.get(id=pk)
+    customer = Customer.objects.get(_id=pk)
     
     if customer:
         data = request.data
