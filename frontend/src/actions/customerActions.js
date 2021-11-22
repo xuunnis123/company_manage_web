@@ -47,14 +47,15 @@ export const listCustomer = () => async(dispatch) =>{
     }
 }
 
-export const customerDetail = (id) => async(dispatch) =>{
+export const customerDetail = (_id) => async(dispatch) =>{
     try {
         dispatch({
             type: CUSTOMER_DETAIL_REQUEST
         })
-        console.log(id)
-        const {data} = await axios.get(`/api/customer/${id}`) 
-        
+        console.log("testtest")
+        console.log(_id)
+        const {data} = await axios.get(`/api/customer/${_id}`) 
+        console.log("data=",data)
         dispatch({
             type:CUSTOMER_DETAIL_SUCCESS,
             payload:data

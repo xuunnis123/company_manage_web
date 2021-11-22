@@ -62,6 +62,7 @@ function MemberScreen({ match, location, history}) {
 
                         <tbody>
                             {customers.map(oneMem => (
+                       
                                 <tr key={oneMem._id}>
                                     <td><Link to={`/customer/${oneMem._id}/edit`}><Button type="button"><i className='fas fa-edit'></i></Button></Link>
                                     <Button

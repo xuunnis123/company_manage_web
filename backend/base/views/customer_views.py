@@ -22,7 +22,7 @@ def getCustomerList(request):
 
 @api_view(['GET'])
 def getCustomer(request,pk):
-    customer = Customer.objects.get(id=pk)
+    customer = Customer.objects.get(_id=pk)
     print(customer)
     serializer = CustomerSerializer(customer, many=False)
     print(serializer)
