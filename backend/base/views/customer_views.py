@@ -88,8 +88,8 @@ def updateCustomer(request, pk):
     
 
 @api_view(['DELETE'])
-@permission_classes([IsAdminUser])
+@permission_classes([IsAuthenticated])
 def deleteCustomer(request, pk):
-    customerForDeletion = Customer.objects.get(id=pk)
+    customerForDeletion = Customer.objects.get(_id=pk)
     customerForDeletion.delete()
     return Response('客戶已刪除')
