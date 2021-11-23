@@ -93,7 +93,7 @@ export const addSupplier = (name, person ,unicode,phone, address, memo) => async
              {'person': person, 'name': name ,'phone':phone,'address':address,'unicode':unicode,'memo':memo},
              config
              ) 
-         localStorage.setItem("supplier",data.id)
+         localStorage.setItem("supplier",data._id)
          dispatch({
              type:SUPPLIER_ADD_SUCCESS,
              payload:data
@@ -133,7 +133,7 @@ export const updateSupplier = (supplier) => async(dispatch,getState) =>{
             }
         console.log({supplier})
         const {data} = await axios.put(
-             `/api/studsupplierent/update/${supplier._id}`,
+             `/api/supplier/update/${supplier._id}`,
              supplier,
              config
              ) 

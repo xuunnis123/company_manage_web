@@ -53,7 +53,7 @@ function SupplierEditScreen({ match, history}) {
                 setName(supplier.name)
                 
                 setPerson(supplier.person)
-               
+                setUnicode(supplier.unicode)
                 setPhone(supplier.phone)
                 setAddress(supplier.address)
         
@@ -128,9 +128,9 @@ function SupplierEditScreen({ match, history}) {
                 <Form.Label>統一編號</Form.Label>
                 <Form.Control
                         required
-                        type='number'
+                        type='unicode'
                         placeholder='輸入統一編號'
-                        value={person}
+                        value={unicode}
                         onChange={(e) => setUnicode(e.target.value)}
                     >
                 </Form.Control>
