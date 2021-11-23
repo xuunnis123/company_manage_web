@@ -119,3 +119,16 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
 
+class ProductSerializer(serializers.ModelSerializer):
+    
+    supplier = serializers.SerializerMethodField(read_only = True)
+    class Meta:
+        model = Product
+        fields = '__all__'
+        
+    def get_supplier(self, obj):
+        supplier_one = obj.supplier
+    
+        serializer =SupplierSerializer(supplier_one, many=False)
+       
+        return serializer.data['name']

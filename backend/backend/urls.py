@@ -25,6 +25,7 @@ urlpatterns = [
    
     path('api/customer/',include('base.urls.customer_urls')),
     path('api/supplier/',include('base.urls.supplier_urls')),
+    path('api/product/',include('base.urls.product_urls')),
     #path('api/finance/',include('base.urls.finance_urls')),
     #path('api/setting/',include('base.urls.setting_urls')),
    

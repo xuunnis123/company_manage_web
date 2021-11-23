@@ -18,20 +18,14 @@ function ProductListScreen({ history, match }) {
     const productDelete = useSelector(state => state.productDelete)
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
 
-    const productCreate = useSelector(state => state.productCreate)
-    const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate
-
-
-    const userLogin = useSelector(state => state.userLogin)
-    const { userInfo } = userLogin
+    const productAdd = useSelector(state => state.productAdd)
+    const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productAdd
 
     let keyword = history.location.search
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
 
-        if (!userInfo.isAdmin) {
-            history.push('/login')
-        }
+       
 
         if (successCreate) {
             history.push(`/product/${createdProduct._id}/edit`)
@@ -39,7 +33,7 @@ function ProductListScreen({ history, match }) {
             dispatch(listProducts(keyword))
         }
 
-    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct, keyword])
+    }, [dispatch, history, successDelete, successCreate, createdProduct, keyword])
 
 
     const deleteHandler = (id) => {
@@ -100,11 +94,11 @@ function ProductListScreen({ history, match }) {
                                         <tr key={product._id}>
                                             <td>{product._id}</td>
                                             <td>{product.name}</td>
-                                            <td>${product.price}</td>
-                                            <td>${product.cost}</td>
+                                            <td>{product.price}</td>
+                                            <td>{product.cost}</td>
                                             <td>{product.category}</td>
-                                            <td>${product.countInStock}</td>
-                                            <td>${product.company}</td>
+                                            <td>{product.countInStock}</td>
+                                            <td>{product.company}</td>
                                             <td>{product.memo}</td>
 
                                             <td>

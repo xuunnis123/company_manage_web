@@ -76,9 +76,11 @@ function Header() {
                             <LinkContainer to='/product'>
                                 <Nav.Link><i className="fas fa-envelope-open-text"></i> 品項管理</Nav.Link>
                             </LinkContainer>
+                            
                             <LinkContainer to='/setting'>
                                 <Nav.Link><i className="far fa-clipboard"></i> 參數設定</Nav.Link>
                             </LinkContainer>
+
                             {userGoogleInfo ? (
                                 <NavDropdown title={userGoogleInfo} id ='username' >
                                     <LinkContainer to='/profile'>
