@@ -54,13 +54,13 @@ function ProductListScreen({ history, match }) {
                     <h1>品項</h1>
                 </Col>
 
-                <Col className='text-right'>
+                
+            </Row>
+            <Col className='text-right'>
                     <Button className='my-3' onClick={createProductHandler}>
                         <i className='fas fa-plus'></i> 新增品項
                     </Button>
-                </Col>
-            </Row>
-
+            </Col>
             {loadingDelete && <Loader />}
             {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 

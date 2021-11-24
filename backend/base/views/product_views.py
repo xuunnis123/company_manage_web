@@ -68,7 +68,54 @@ def addProduct(request):
     
         return Response(serializer.data)
     
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateProduct(request, pk):
     
+    
+    
+    product = Product.objects.get(id=pk)
+    
+    if product:
+        data = request.data
+        if isinstance(data['supplier'], int):
+            supplier = Supplier.objects.get(_id=data['supplier'])
+            
+        else:
+            supplier = Supplier.objects.get(name=data['supplier'])
+        
+        if data and len(data) != 0:
+                if data.get('name'):
+                    product.name = data['name']
+                
+                product.supplier = supplier
+                
+
+                if data.get('unit'):
+                    product.unit = data['unit']
+                if data.get('model'):
+                    product.model = data['model']
+                if data.get('category'):
+                    product.category = data['category']
+                
+                
+               
+            
+                if data.get('description'):
+                    product.description = data['description']
+                if data.get('price'):
+                    product.file = data['price']
+                
+                if data.get('cost'):
+                    product.cost = data['cost']
+                if data.get('countInStock'):
+                    product.countInStock = data['countInStock']
+           
+        product.save()
+        
+        serializer = ProductSerializer(product, many=False)
+
+        return Response(serializer.data)   
     
     
 @api_view(['DELETE'])
