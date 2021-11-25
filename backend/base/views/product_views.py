@@ -27,9 +27,11 @@ from rest_framework import status
     modifiedAt = models.DateTimeField(auto_now = True)'''
 @api_view(['GET'])
 def getProductList(request):
+    
     product = Product.objects.all()
+    print("product=",product)
     serializer = ProductSerializer(product, many=True)
-    return Response(  )
+    return Response(serializer.data)
 
 
 
@@ -37,7 +39,7 @@ def getProductList(request):
 def getProduct(request,pk):
     product = Product.objects.get(_id=pk)
     serializer = ProductSerializer(product, many=False)
-    return Response()
+    return Response(serializer.data)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
