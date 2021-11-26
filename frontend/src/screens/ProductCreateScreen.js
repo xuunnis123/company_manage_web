@@ -5,9 +5,8 @@ import { Row, Col, ListGroup, Image, Form, Button, Card, Dropdown,DropdownButton
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-
+import {  listSupplier } from '../actions/supplierActions'
 import {  addProduct } from '../actions/productActions'
-
 function ProductCreateScreen({ match, location, history}) {
     /*name = models.CharField(max_length=200, null=True, blank=True)
     model = models.CharField(max_length=200, null=True, blank=True)
@@ -43,7 +42,7 @@ function ProductCreateScreen({ match, location, history}) {
     const {error, loading, product} = productAdd
 
     useEffect(()=>{
-        
+        dispatch(listSupplier())
         if(product){
             
             history.push(redirect)
