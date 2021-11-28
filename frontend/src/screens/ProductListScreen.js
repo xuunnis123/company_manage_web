@@ -13,27 +13,29 @@ function ProductListScreen({ history, match }) {
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
-    const { loading, error, products, pages, page } = productList
+    const { loading, error, products } = productList
 
     const productDelete = useSelector(state => state.productDelete)
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
 
-    const productAdd = useSelector(state => state.productAdd)
-    const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productAdd
+   
 
     let keyword = history.location.search
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
-
-       
-
+        console.log("dd")
+        dispatch(listProducts())
+        console.log("ee")
+        /*
         if (successCreate) {
             history.push(`/product/${createdProduct._id}/edit`)
         } else {
             dispatch(listProducts(keyword))
+            
         }
+        */
 
-    }, [dispatch, history, successDelete, successCreate, createdProduct, keyword])
+    }, [dispatch, history, successDelete, keyword])
 
 
     const deleteHandler = (id) => {
@@ -65,8 +67,7 @@ function ProductListScreen({ history, match }) {
             {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 
 
-            {loadingCreate && <Loader />}
-            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+         
 
             {loading
                 ? (<Loader />)
@@ -83,6 +84,7 @@ function ProductListScreen({ history, match }) {
                                         <th>成本價</th>
                                         <th>分類</th>
                                         <th>數量</th>
+                                        <th>單位</th>
                                         <th>經銷商</th>
                                         <th>備註</th>
                                         <th></th>
@@ -90,25 +92,29 @@ function ProductListScreen({ history, match }) {
                                 </thead>
 
                                 <tbody>
-                                    {products.map(product => (
-                                        <tr key={product._id}>
-                                            <td>{product._id}</td>
-                                            <td>{product.name}</td>
-                                            <td>{product.price}</td>
-                                            <td>{product.cost}</td>
-                                            <td>{product.category}</td>
-                                            <td>{product.countInStock}</td>
-                                            <td>{product.company}</td>
-                                            <td>{product.memo}</td>
+                                    
+
+                                    {products.map(oneProduct => (
+                                        <tr key={oneProduct._id}>
+                                            <td>{oneProduct._id}</td>
+                                            <td>{oneProduct.name}</td>
+                                            <td>{oneProduct.price}</td>
+                                            <td>{oneProduct.cost}</td>
+                                            <td>{oneProduct.category}</td>
+                                            <td>{oneProduct.countInStock}</td>
+                                            <td>{oneProduct.unit}</td>
+                                            <td>{oneProduct.supplier}</td>
+                                            <td>{oneProduct.memo}</td>
 
                                             <td>
-                                                <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                                        
+                                                <LinkContainer to={`/product/${oneProduct._id}/edit`}>
                                                     <Button variant='light' className='btn-sm'>
                                                         <i className='fas fa-edit'></i>
                                                     </Button>
                                                 </LinkContainer>
 
-                                                <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
+                                                <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(oneProduct._id)}>
                                                     <i className='fas fa-trash'></i>
                                                 </Button>
                                             </td>
@@ -116,7 +122,7 @@ function ProductListScreen({ history, match }) {
                                     ))}
                                 </tbody>
                             </Table>
-                            <Paginate pages={pages} page={page} isAdmin={true} />
+                            <Paginate pages='' page='' isAdmin={true} />
                         </div>
                     )}
         </div>

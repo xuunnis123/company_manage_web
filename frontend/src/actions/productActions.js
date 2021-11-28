@@ -28,9 +28,9 @@ import {
 export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
-
+        console.log("yeteeee")
         const { data } = await axios.get(`/api/product/products`)
-
+        console.log("data=",data)
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
@@ -83,12 +83,12 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userInfo.access}`
             }
         }
 
         const { data } = await axios.delete(
-            `/api/product/delete/${id}/`,
+            `/api/product/delete/${id}`,
             config
         )
 
@@ -110,7 +110,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
 
 
-export const addProduct = (name, price, cost, supplier, model, category, countInStock, unit) => async(dispatch,getState) =>{
+export const addProduct = (name, price, cost, supplier, model, category, countInStock, unit, memo) => async(dispatch,getState) =>{
     try{
         dispatch({
 
@@ -128,7 +128,7 @@ export const addProduct = (name, price, cost, supplier, model, category, countIn
             }
         const {data} = await axios.post(
              '/api/product/create/',
-             {'name': name, 'price': price ,'cost':cost,'supplier':supplier,'model':model,'category':category,'countInStock':countInStock,'unit':unit},
+             {'name': name, 'price': price ,'cost':cost,'supplier':supplier,'model':model,'category':category,'countInStock':countInStock,'unit':unit,'memo':memo},
              config
              ) 
          
@@ -163,12 +163,12 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         const config = {
             headers: {
                 'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                Authorization: `Bearer ${userInfo.access}`
             }
         }
 
         const { data } = await axios.put(
-            `/api/product/update/${product._id}/`,
+            `/api/product/update/${product._id}`,
             product,
             config
         )

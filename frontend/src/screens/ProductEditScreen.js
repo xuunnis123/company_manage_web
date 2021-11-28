@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button,DropdownButton,Dropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
-
+import { listSupplier } from '../actions/supplierActions'
 
 function ProductEditScreen({ match, history }) {
 
@@ -27,7 +27,8 @@ function ProductEditScreen({ match, history }) {
     const [cost, setCost] = useState('')
     const [category, setCategory] = useState('')
     const [countInStock, setCountInStock] = useState(0)
-    const [company, setCompany] = useState('')
+    const [supplierName,setSupplierName] = useState('請選擇供應商')
+    const [supplier, setSupplier] = useState('')
     const [memo, setMemo] = useState('')
     //const [uploading, setUploading] = useState(false)
 
@@ -39,31 +40,43 @@ function ProductEditScreen({ match, history }) {
     const productUpdate = useSelector(state => state.productUpdate)
     const { error: errorUpdate, loading: loadingUpdate, success: successUpdate } = productUpdate
 
+    const supplierList = useSelector(state => state.supplierList)
+    const { errorList, loadingList, suppliers } = supplierList
 
     useEffect(() => {
-
+        dispatch(listSupplier())
+        console.log("edit")
         if (successUpdate) {
             dispatch({ type: PRODUCT_UPDATE_RESET })
-            history.push('/admin/productlist')
+            history.push('/product')
         } else {
+            console.log("edit")
             if (!product.name || product._id !== Number(productId)) {
                 dispatch(listProductDetails(productId))
             } else {
                 setName(product.name)
                 setPrice(product.price)
                 setCost(product.cost)
-                setCompany(product.company)
+                setSupplier(product.supplier)
                 setCategory(product.category)
                 setCountInStock(product.countInStock)
                 setMemo(product.memo)
-
+                setSupplierName(product.supplier)
             }
         }
 
 
 
     }, [dispatch, product, productId, history, successUpdate])
+    const handleSelectSupplier=(e)=>{
+        
+        var splitSupplier = e.split(',');
+        var stringId = splitSupplier[0]
+        setSupplier(parseInt(stringId, 10))
 
+        setSupplierName(splitSupplier[1]);  
+        
+      }
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(updateProduct({
@@ -71,7 +84,7 @@ function ProductEditScreen({ match, history }) {
             name,
             price,
             cost,
-            company,
+            supplier,
             category,
             countInStock,
             memo
@@ -81,8 +94,8 @@ function ProductEditScreen({ match, history }) {
    
     return (
         <div>
-            <Link to='/productlist'>
-                Go Back
+            <Link to='/product'>
+                回上一頁
             </Link>
 
             <FormContainer>
@@ -160,17 +173,24 @@ function ProductEditScreen({ match, history }) {
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='company'>
-                                <Form.Label>公司</Form.Label>
-                                <Form.Control
-
-                                    type='text'
-                                    placeholder='輸入公司'
-                                    value={company}
-                                    onChange={(e) => setCompany(e.target.value)}
-                                >
-                                </Form.Control>
+                            <Form.Group controlId='supplier'>
+                                <Form.Label>供應商</Form.Label>
+                                <DropdownButton
+                                aligndown="true"
+                                title= {supplierName}
+                                id="dropdown-menu-align-down"
+                                onSelect={handleSelectSupplier}
+                                    >
+                                 {suppliers.map((supplier,index) =>{
+                            
+                            return <Dropdown.Item eventKey={[supplier._id,supplier.name]} key={index}>{supplier.name}</Dropdown.Item>
+                            })}
+                            </DropdownButton>
                             </Form.Group>
+
+
+                           
+
 
                             <Form.Group controlId='memo'>
                                 <Form.Label>備註</Form.Label>
@@ -186,7 +206,7 @@ function ProductEditScreen({ match, history }) {
 
 
                             <Button type='submit' variant='primary'>
-                                Update
+                                更新資料
                         </Button>
 
                         </Form>

@@ -51,7 +51,7 @@ class Product(models.Model):
     unit = models.CharField(max_length=200, null=True, blank=True)
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True)
     category = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
+    memo = models.TextField(null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     cost = models.IntegerField(null=True, blank=True)
     countInStock = models.IntegerField(null=True, blank=True, default=0)

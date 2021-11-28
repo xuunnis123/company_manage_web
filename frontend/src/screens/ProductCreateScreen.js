@@ -28,7 +28,7 @@ function ProductCreateScreen({ match, location, history}) {
     const [model, setModel] = useState('')
     const [unit, setUnit] = useState('')
     const [supplier, setSupplier] = useState('')
-    
+    const [memo, setMemo] = useState('')
 
     const dispatch = useDispatch()
   
@@ -62,7 +62,7 @@ function ProductCreateScreen({ match, location, history}) {
     const submitHandler =(e) =>{
         e.preventDefault()
         
-        dispatch(addProduct(name, price, cost, supplier, model, category, countInStock, unit))
+        dispatch(addProduct(name, price, cost, supplier, model, category, countInStock, unit, memo))
         
         history.push(redirect)
         
@@ -179,6 +179,17 @@ function ProductCreateScreen({ match, location, history}) {
                                 >
                                 </Form.Control>
                             </Form.Group>
+                            <Form.Group controlId='memo'>
+                                <Form.Label>備註</Form.Label>
+                                <Form.Control
+
+                                    type='text'
+                                    placeholder='輸入備註'
+                                    value={memo}
+                                    onChange={(e) => setMemo(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
 
                 <Button type='submit' variant='primary'>
                     建立
@@ -187,7 +198,7 @@ function ProductCreateScreen({ match, location, history}) {
         
             <Row className='py-3'>
                 <Col>
-                     <Link to='/school'>
+                     <Link to='/product'>
                      取消
                         </Link>
                 </Col>

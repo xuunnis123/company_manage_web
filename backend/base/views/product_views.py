@@ -25,11 +25,10 @@ from rest_framework import status
     countInStock = models.IntegerField(null=True, blank=True, default=0)
     createdAt = models.DateTimeField(auto_now_add=True)
     modifiedAt = models.DateTimeField(auto_now = True)'''
+
 @api_view(['GET'])
 def getProductList(request):
-    
     product = Product.objects.all()
-    print("product=",product)
     serializer = ProductSerializer(product, many=True)
     return Response(serializer.data)
 
@@ -37,7 +36,6 @@ def getProductList(request):
 
 @api_view(['GET'])
 def getProduct(request,pk):
-    print("pk=",pk)
     product = Product.objects.get(_id=pk)
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
@@ -60,10 +58,10 @@ def addProduct(request):
             model = data['model'],
             supplier = supplier,
             category = data['category'],
-            description = data['description'],
             price = data['price'],
             cost = data['cost'],
-            countInStock = data['countInStock']
+            countInStock = data['countInStock'],
+            memo = data['memo']
 
         )
 
@@ -77,7 +75,7 @@ def updateProduct(request, pk):
     
     
     
-    product = Product.objects.get(id=pk)
+    product = Product.objects.get(_id=pk)
     
     if product:
         data = request.data
@@ -113,6 +111,8 @@ def updateProduct(request, pk):
                     product.cost = data['cost']
                 if data.get('countInStock'):
                     product.countInStock = data['countInStock']
+                if data.get('memo'):
+                    product.memo = data['memo']
            
         product.save()
         
@@ -124,6 +124,7 @@ def updateProduct(request, pk):
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def deleteProduct(request, pk):
+    print("delete")
     productForDeletion = Product.objects.get(_id=pk)
     productForDeletion.delete()
     return Response('品項已刪除')
