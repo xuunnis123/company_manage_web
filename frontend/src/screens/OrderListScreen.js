@@ -12,8 +12,8 @@ function OrderListScreen({ history, match }) {
 
     const dispatch = useDispatch()
 
-    const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+    const orderList = useSelector(state => state.orderList)
+    const { loading, error, orders } = orderList
 
     const productDelete = useSelector(state => state.productDelete)
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
@@ -23,9 +23,8 @@ function OrderListScreen({ history, match }) {
     let keyword = history.location.search
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
-        console.log("dd")
         dispatch(listProducts())
-        console.log("ee")
+    
         /*
         if (successCreate) {
             history.push(`/product/${createdProduct._id}/edit`)
@@ -40,27 +39,27 @@ function OrderListScreen({ history, match }) {
 
     const deleteHandler = (id) => {
 
-        if (window.confirm('是否確定要刪除品項？')) {
+        if (window.confirm('是否確定要刪除訂單？')) {
             dispatch(deleteProduct(id))
         }
     }
 
     const createProductHandler = () => {
-        history.push('/product/create')
+        history.push('/order/create')
     }
 
     return (
         <div>
             <Row className='align-items-center'>
                 <Col>
-                    <h1>品項</h1>
+                    <h1>訂單</h1>
                 </Col>
 
                 
             </Row>
             <Col className='text-right'>
                     <Button className='my-3' onClick={createProductHandler}>
-                        <i className='fas fa-plus'></i> 新增品項
+                        <i className='fas fa-plus'></i> 新增訂單
                     </Button>
             </Col>
             {loadingDelete && <Loader />}
@@ -78,39 +77,39 @@ function OrderListScreen({ history, match }) {
                             <Table striped bordered hover responsive className='table-sm'>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>商品名稱</th>
-                                        <th>價格</th>
-                                        <th>成本價</th>
-                                        <th>分類</th>
-                                        <th>數量</th>
-                                        <th>單位</th>
-                                        <th>經銷商</th>
-                                        <th>備註</th>
-                                        <th></th>
+                                        <th>單號</th>
+                                        <th>時間</th>
+                                        <th>買方</th>
+                                        <th>總金額</th>
+                                        <th>項目</th>
+                                        <th>動作</th>
+                                    
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     
 
-                                    {products.map(oneProduct => (
-                                        <tr key={oneProduct._id}>
-                                            <td>{oneProduct._id}</td>
-                                            <td>{oneProduct.name}</td>
-                                            <td>{oneProduct.price}</td>
-                                            <td>{oneProduct.cost}</td>
-                                            <td>{oneProduct.category}</td>
-                                            <td>{oneProduct.countInStock}</td>
-                                            <td>{oneProduct.unit}</td>
-                                            <td>{oneProduct.supplier}</td>
-                                            <td>{oneProduct.memo}</td>
+                                             {orders.map(oneProduct => (
+                                        <tr key={orders._id}>
+                                            <td>{orders.no}</td>
+                                            <td>{orders.datetime}</td>
+                                            <td>{orders.customer}</td>
+                                            <td>{orders.amount}</td>
+                                            <td>
+                                            <LinkContainer to={`/orderitems/${orders.no}/edit`}>
+                                                    <Button variant='light' className='btn-sm'>
+                                                        <i className='fas fa-edit'></i>
+                                                    </Button>
+                                                </LinkContainer>
+                                            </td>
+                                            
 
                                             <td>
                                         
-                                                <LinkContainer to={`/product/${oneProduct._id}/edit`}>
+                                                <LinkContainer to={`/order/${oneProduct._id}/edit`}>
                                                     <Button variant='light' className='btn-sm'>
-                                                        <i className='fas fa-edit'></i>
+                                                        <i className='fas fa-plus-square'></i>
                                                     </Button>
                                                 </LinkContainer>
 
