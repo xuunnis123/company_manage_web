@@ -78,7 +78,7 @@ function ProductListScreen({ history, match }) {
                             <Table striped bordered hover responsive className='table-sm'>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        
                                         <th>商品名稱</th>
                                         <th>價格</th>
                                         <th>成本價</th>
@@ -96,7 +96,7 @@ function ProductListScreen({ history, match }) {
 
                                     {products.map(oneProduct => (
                                         <tr key={oneProduct._id}>
-                                            <td>{oneProduct._id}</td>
+                                            
                                             <td>{oneProduct.name}</td>
                                             <td>{oneProduct.price}</td>
                                             <td>{oneProduct.cost}</td>
