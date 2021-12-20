@@ -99,7 +99,8 @@ def updateProduct(request, pk):
                 if data.get('category'):
                     product.category = data['category']
                 
-                
+                if data.get('cate'):
+                    pass
                
             
                 if data.get('description'):

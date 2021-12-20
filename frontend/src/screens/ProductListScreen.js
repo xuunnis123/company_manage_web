@@ -67,8 +67,7 @@ function ProductListScreen({ history, match }) {
             {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 
 
-         
-
+        
             {loading
                 ? (<Loader />)
                 : error
