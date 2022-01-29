@@ -15,7 +15,7 @@ import { financeListReducers,incomeListReducers,outcomeListReducers,incomeDetail
 
 import { incomeContributeContextListReducers,outcomeContributeContextListReducers,incomeMoneyCategoryListReducers,outcomeMoneyCategoryListReducers,incomeContributeContextAddReducers,incomeMoneyCategoryAddReducers,outcomeContributeContextAddReducers,outcomeMoneyCategoryAddReducers,incomeContributeContextUpdateReducers,incomeMoneyCategoryUpdateReducers,outcomeContributeContextUpdateReducers,outcomeMoneyCategoryUpdateReducers,outcomeContributeContextDetailsReducer,incomeContributeContextDetailsReducer,outcomeMoneyCategoryDetailsReducer,incomeMoneyCategoryDetailsReducer} from './reducers/settingReducers'
 
-import {semesterListReducers,semesterDetailsReducer,semesterAddReducers,semesterUpdateReducers} from './reducers/semesterReducers'
+
 const reducer = combineReducers({
     
     cart:cartReducer,
@@ -80,11 +80,6 @@ const reducer = combineReducers({
     incomeContributeContextDetail:incomeContributeContextDetailsReducer,
 
 
-
-    semesterList:semesterListReducers,
-    semesterDetail:semesterDetailsReducer,
-    semesterAdd:semesterAddReducers,
-    semesterUpdate:semesterUpdateReducers,
 
 
     outcomeFinanceList:outcomeFinanceListReducer,

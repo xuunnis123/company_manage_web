@@ -28,6 +28,7 @@ from rest_framework import status
 
 @api_view(['GET'])
 def getProductList(request):
+    print("getList")
     product = Product.objects.all()
     serializer = ProductSerializer(product, many=True)
     return Response(serializer.data)
@@ -36,6 +37,7 @@ def getProductList(request):
 
 @api_view(['GET'])
 def getProduct(request,pk):
+    print("get")
     product = Product.objects.get(_id=pk)
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)

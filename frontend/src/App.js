@@ -38,9 +38,6 @@ import FinanceOutcomeCreateScreen from './screens/FinanceOutcomeCreateScreen'
 
 
 
-import SemesterScreen from './screens/SemesterScreen'
-import SemesterCreateScreen from './screens/SemesterCreateScreen'
-import SemesterEditScreen from './screens/SemesterEditScreen'
 
 function App() {
   return (
@@ -84,9 +81,7 @@ function App() {
           <Route path='/setting/income/contributecontext/:id/edit' component={SettingIncomeContributeEditScreen} />
          
 
-          <Route path='/semester' component={SemesterScreen} exact/>
-          <Route path='/semester/create' component={SemesterCreateScreen} />
-          <Route path='/semester/:id/edit' component={SemesterEditScreen} />
+         
         </Container>
       </main>
       

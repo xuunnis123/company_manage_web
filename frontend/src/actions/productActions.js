@@ -28,7 +28,7 @@ import {
 export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
-        const { data } = await axios.get(`/api/product/products`)
+        const { data } = await axios.get(`/api/product/products/`)
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
