@@ -132,3 +132,22 @@ class ProductSerializer(serializers.ModelSerializer):
         serializer =SupplierSerializer(supplier_one, many=False)
        
         return serializer.data['name']
+    
+    
+    
+class OrderItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = '__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+    ordersItems = serializers.SerializerMethodField(read_only = True)
+    
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+    def get_ordersItems(self, obj):
+        items = obj.orderitem_set.all()
+        serializer=OrderItemSerializer(items, many = True)
+        return serializer.data

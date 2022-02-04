@@ -44,7 +44,7 @@ function OrderListScreen({ history, match }) {
         }
     }
 
-    const createProductHandler = () => {
+    const createOrderHandler = () => {
         history.push('/order/create')
     }
 
@@ -58,7 +58,7 @@ function OrderListScreen({ history, match }) {
                 
             </Row>
             <Col className='text-right'>
-                    <Button className='my-3' onClick={createProductHandler}>
+                    <Button className='my-3' onClick={createOrderHandler}>
                         <i className='fas fa-plus'></i> 新增訂單
                     </Button>
             </Col>

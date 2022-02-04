@@ -8,7 +8,10 @@ import ProductsScreen from './screens/ProductListScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import ProductCreateScreen from './screens/ProductCreateScreen'
 
-
+import OrderCreateScreen from './screens/OrderCreateScreen'
+//import OrderDetailScreen from './screens/OrderDetailScreen'
+import OrderEditScreen from './screens/OrderEditScreen'
+import OrderListScreen from './screens/OrderListScreen'
 
 import SupplierScreen  from './screens/SupplierScreen'
 import SupplierCreateScreen from './screens/SupplierCreateScreen'
@@ -61,6 +64,12 @@ function App() {
           <Route path='/product' component={ProductsScreen} exact/>
           <Route path='/product/create' component={ProductCreateScreen} />
           <Route path='/product/:id/edit' component={ProductEditScreen} />
+
+
+          <Route path='/order' component={OrderListScreen} exact/>
+          <Route path='/order/create' component={OrderCreateScreen} />
+          <Route path='/order/:id/edit' component={OrderEditScreen} />
+          <Route path='/order/:id' component={OrderListScreen} exact/>
 
           <Route path='/finance' component={FinanceScreen} exact/>
           <Route path='/finance/income/create' component={FinanceIncomeCreateScreen} />

@@ -5,22 +5,14 @@ import { Row, Col, ListGroup, Image, Form, Button, Card, Dropdown,DropdownButton
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import {  listSupplier } from '../actions/supplierActions'
-import {  addProduct } from '../actions/productActions'
+import {  listCustomer } from '../actions/customerActions'
+import { listProducts } from '../actions/productActions'
+import ProductEditScreen from './ProductEditScreen'
 function OrderCreateScreen({ match, location, history}) {
-    /*name = models.CharField(max_length=200, null=True, blank=True)
-    model = models.CharField(max_length=200, null=True, blank=True)
-    unit = models.CharField(max_length=200, null=True, blank=True)
-    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True)
-    category = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
-    price = models.IntegerField(null=True, blank=True)
-    cost = models.IntegerField(null=True, blank=True)
-    countInStock = models.IntegerField(null=True, blank=True, default=0)
-    createdAt = models.DateTimeField(auto_now_add=True)
-    modifiedAt = models.DateTimeField(auto_now = True) */
-    const [supplierTitle,setSupplierTitle] = useState('請選擇供應商')
-    const [name, setName] = useState('')
+   
+    const [customerTitle,setCustomerTitle] = useState('請選擇客戶')
+    const [productTitle,setProductTitle] = useState('請選擇品項')
+    const [deliveryDate, setDeliveryDate] = useState('')
     const [price, setPrice] = useState(0)
     const [cost, setCost] = useState(0)
     const [category, setCategory] = useState('')
@@ -33,152 +25,109 @@ function OrderCreateScreen({ match, location, history}) {
     const dispatch = useDispatch()
   
     //const redirect = location.search ? location.search.split('=')[1] :'/school'
-    const redirect = '/product'
+    const redirect = '/order'
 
-    const supplierList = useSelector(state => state.supplierList)
-    const { supplier_error, supplier_loading, suppliers } = supplierList
+    const customerList = useSelector(state => state.customerList)
+    const { customer_error, customer_loading, customers } = customerList
 
-    const productAdd = useSelector(state => state.productAdd)
-    const {error, loading, product} = productAdd
+    const productList = useSelector(state => state.productList)
+    const { product_error, product_loading, products } = productList
+
+    const orderAdd = useSelector(state => state.orderAdd)
+    const {error, loading, order} = orderAdd
 
     useEffect(()=>{
-        dispatch(listSupplier())
-        if(product){
-            
-            history.push(redirect)
-        }
-        
-    },[history, product, redirect])
+        dispatch(listCustomer())
+        dispatch(listProducts())
+       
+       if(order){
+        history.push(redirect)
+       }
+
+    },[history,order,redirect])
     const handleSelect=(e)=>{
         
         var splitSupplier = e.split(',');
         
         setSupplier(splitSupplier[0])
 
-        setSupplierTitle(splitSupplier[1]);  
+        setCustomerTitle(splitSupplier[1]);  
       }
+    const handleSelectProduct=(e)=>{
+        
+        var splitSupplier = e.split(',');
+        
+        setSupplier(splitSupplier[0])
 
+        setProductTitle(splitSupplier[1]);  
+      }
     //dispatch(listSchool())
     const submitHandler =(e) =>{
         e.preventDefault()
         
-        dispatch(addProduct(name, price, cost, supplier, model, category, countInStock, unit, memo))
+        //dispatch(addOrder(name, price, cost, supplier, model, category, countInStock, unit, memo))
         
         history.push(redirect)
         
     }
     return (
         <FormContainer>
-            <h1>新增品項</h1>
+            <h1>新增訂單</h1>
             
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader />}
+            {customer_error && <Message variant='danger'>{customer_error}</Message>}
+            {customer_loading && <Loader />}
             
             <Form onSubmit={submitHandler}>
-
-            <Form.Group controlId='name'>
-                                <Form.Label>品項名稱</Form.Label>
-                                <Form.Control
-
-                                    type='name'
-                                    placeholder='輸入品項'
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                >
-                                </Form.Control>
-                            </Form.Group>
-
-                            <Form.Group controlId='price'>
-                                <Form.Label>售價</Form.Label>
-                                <Form.Control
-
-                                    type='number'
-                                    placeholder='輸入售價'
-                                    value={price}
-                                    onChange={(e) => setPrice(e.target.value)}
-                                >
-                                </Form.Control>
-                            </Form.Group>
-
-
-                            <Form.Group controlId='cost'>
-                                <Form.Label>成本</Form.Label>
-                                <Form.Control
-
-                                    type='text'
-                                    placeholder='輸入成本價'
-                                    value={cost}
-                                    onChange={(e) => setCost(e.target.value)}
-                                >
-                                </Form.Control>
-
-                            </Form.Group>
-
-                            <Form.Group controlId='supplier'>
-                                <Form.Label>供應商</Form.Label>
+                            <Form.Group controlId='product'>
+                                <Form.Label>品項</Form.Label>
                                 <DropdownButton
                                 aligndown="true"
-                                title= {supplierTitle}
+                                title= {productTitle}
                                 id="dropdown-menu-align-down"
-                                onSelect={handleSelect}
-                                    >
+                                onSelect={handleSelectProduct}
+                                >
 
-                            {suppliers.map((supplier,index) =>{
+                            {products.map((product,index) =>{
                             
-                            return <Dropdown.Item eventKey={[supplier._id,supplier.name]} key={index}>{supplier.name}</Dropdown.Item>
+                            return <Dropdown.Item eventKey={[product._id,product.name]} key={index}>{product.name}</Dropdown.Item>
                             })}
                                     
                             </DropdownButton>
                             
                             </Form.Group>
+                
 
-                            <Form.Group controlId='category'>
-                                <Form.Label>類型</Form.Label>
+
+
+                            <Form.Group controlId='customer'>
+                                <Form.Label>客戶</Form.Label>
+                                <DropdownButton
+                                aligndown="true"
+                                title= {customerTitle}
+                                id="dropdown-menu-align-down"
+                                onSelect={handleSelect}
+                                    >
+
+                            {customers.map((customer,index) =>{
+                            
+                            return <Dropdown.Item eventKey={[customer._id,customer.name]} key={index}>{customer.name}</Dropdown.Item>
+                            })}
+                                    
+                            </DropdownButton>
+                            
+                            </Form.Group>
+                            <Form.Group controlId='delivery_date'>
+                                <Form.Label>出貨日</Form.Label>
                                 <Form.Control
 
                                     type='text'
-                                    placeholder='輸入類型'
-                                    value={category}
-                                    onChange={(e) => setCategory(e.target.value)}
+                                    placeholder='輸入出貨日'
+                                    value={deliveryDate}
+                                    onChange={(e) => setMemo(e.target.value)}
                                 >
                                 </Form.Control>
                             </Form.Group>
-
-                            <Form.Group controlId='countinstock'>
-                                <Form.Label>庫存</Form.Label>
-                                <Form.Control
-
-                                    type='number'
-                                    placeholder='輸入庫存'
-                                    value={countInStock}
-                                    onChange={(e) => setCountInStock(e.target.value)}
-                                >
-                                </Form.Control>
-                            </Form.Group>
-
-                            <Form.Group controlId='model'>
-                                <Form.Label>型號</Form.Label>
-                                <Form.Control
-
-                                    type='text'
-                                    placeholder='輸入型號'
-                                    value={model}
-                                    onChange={(e) => setModel(e.target.value)}
-                                >
-                                </Form.Control>
-                            </Form.Group>
-
-                            <Form.Group controlId='unit'>
-                                <Form.Label>單位</Form.Label>
-                                <Form.Control
-
-                                    type='text'
-                                    placeholder='輸入單位'
-                                    value={unit}
-                                    onChange={(e) => setUnit(e.target.value)}
-                                >
-                                </Form.Control>
-                            </Form.Group>
+                      
                             <Form.Group controlId='memo'>
                                 <Form.Label>備註</Form.Label>
                                 <Form.Control
@@ -198,7 +147,7 @@ function OrderCreateScreen({ match, location, history}) {
         
             <Row className='py-3'>
                 <Col>
-                     <Link to='/product'>
+                     <Link to='/order'>
                      取消
                         </Link>
                 </Col>
